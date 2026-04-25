@@ -13,9 +13,14 @@ const app = express();
 
 app.set("trust proxy", 1);
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL
+];
+
 app.use(cors({
-    origin: true, // allow all origins temporarily
-    credentials: true,
+  origin: allowedOrigins,
+  credentials: true,
 }));
 
 const server = http.createServer(app);
