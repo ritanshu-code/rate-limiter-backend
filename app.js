@@ -17,9 +17,9 @@ const allowedOrigins = [
   "http://localhost:5173",
   process.env.FRONTEND_URL
 ];
-
+console.log("FRONTEND_URL:", process.env.FRONTEND_URL);
 app.use(cors({
-  origin: allowedOrigins,
+  origin: true,
   credentials: true,
 }));
 
