@@ -6,7 +6,7 @@ const router = express.Router();
 // GET /logs
 router.get("/logs", async (req, res) => {
     try {
-        const logs = await redis.lrange("logs", 0, 49);
+        const logs = await redis.lrange("rate-limiter:logs", 0, 49);
 
         const parsedLogs = logs.map(log => JSON.parse(log));
 
@@ -24,7 +24,7 @@ router.get("/logs", async (req, res) => {
 // GET /stats
 router.get("/stats", async (req, res) => {
     try {
-        const logs = await redis.lrange("logs", 0, -1);
+        const logs = await redis.lrange("rate-limiter:logs", 0, -1);
         const parsedLogs = logs.map(log => JSON.parse(log));
 
         let totalRequests = parsedLogs.length;
